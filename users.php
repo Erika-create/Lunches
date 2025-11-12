@@ -14,7 +14,7 @@
         Role:
         <input type="radio" name="role" value="pupil" checked>Pupil<br>
         <input type="radio" name="role" value="admin">Administrator<br>
-        <input type="submit" value="Add pupil">
+        <input type="submit" value="Add User">
     </form>   
 </body>
 </html>
