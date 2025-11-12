@@ -1,5 +1,5 @@
 <?php
-print_r($_POST)
+print_r($_POST);
 include_once("connection.php"); //equivalent of import
 try{
     $stmt=$conn->prepare("INSERT INTO tblusers 
@@ -12,8 +12,8 @@ try{
     $stmt->bindParam(":Password", $_POST["password"]);
     $stmt->bindParam(":Year", $_POST["year"]);
     $stmt->bindParam(":Balance", $_POST["balance"]);
-    $stmt->bindParam(":Role", 1);
-    $stmt->bindParam(":Username", "bob");
+    $stmt->bindParam(":Role", $role);
+    $stmt->bindParam(":Username", $username);
 
     $stmt->execute();
 }
