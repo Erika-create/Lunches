@@ -9,6 +9,7 @@ $conn->exec($sql);
 $sql="USE Lunches";
 $conn->exec($sql);
 echo("DB created successfully<br>");
+
 // create users table
 $stmt=$conn->prepare("DROP TABLE IF EXISTS tblusers;
 CREATE TABLE tblusers
@@ -24,4 +25,17 @@ Role TINYINT(1)
 ");
 $stmt->execute();
 echo("tblusers created<br>");
+
+//create food table
+$stmt=$conn->prepare("DROP TABLE IF EXISTS tblfood;
+CREATE TABLE tblfood
+(FoodID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+Name VARCHAR(20) NOT NULL,
+Description VARCHAR(200) NOT NULL,
+Category VARCHAR(20) NOT NULL,
+Price DECIMAL (15,2) NOT NULL
+);
+");
+$stmt->execute();
+echo("tblfood created<br>");
 ?>
