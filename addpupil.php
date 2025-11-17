@@ -26,7 +26,6 @@ try{
     $stmt->bindParam(":Balance", $_POST["balance"]);
     $stmt->bindParam(":Role", $role);
     $stmt->bindParam(":Username", $username);
-
     $stmt->execute();
 }
 catch(PDOException $e)
