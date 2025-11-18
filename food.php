@@ -9,10 +9,14 @@
         Name:<input type="text" name="name"><br>
         Description:<input type="text" name="description"><br>
         Category:
-        <input type="radio" name="category" value="drink" checked>Drink<br>
-        <input type="radio" name="category" value="food">Food<br>
-        <input type="submit" value="Add Food">
+        <select name="category">
+            <option value="snack">Snack</option>
+            <option value="drink">Drink</option>
+            <option value="sandwich">Sandwich</option>
+        </select>
+        <br>
         Price:<input type="text" name="balance"><br>
+        <input type="submit" value="Add Food">
     </form>   
     <?php
         include_once("connection.php");
