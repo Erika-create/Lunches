@@ -1,3 +1,21 @@
+<?php
+    session_start();
+    $restricted_roles = ["pupil"];
+
+    /*if (!isset($_SESSION["Student"])){
+        header("location:login.php");
+        exit();
+    }*/
+
+    if (in_array($_SESSION["role"], $restricted_roles, true)) {
+    header("location:login.php");
+    //header("HTTP/1.1 403 Forbidden");
+    echo "<h1>Access Denied</h1><p>Your account is not allowed to view this page.</p>";
+    exit();
+}
+
+    echo("Hello ".$_SESSION["firstname"]);
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
