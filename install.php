@@ -32,7 +32,7 @@ echo($hashedpassword);
 $stmt=$conn->prepare("INSERT INTO tblusers 
 (UserID,Username,Surname,Forename,Password,Year,Balance,Role)
 VALUES
-(NULL,'Rock.Lila','Rock','Lila',:Password,12,3.00,1)
+(NULL,'Rock.Lila','Rock','Lila',:Password,12,3.00,1),
 (NULL,'Oku.Erika','Oku','Erika',:Password,12,320,0)
 ");
 $stmt->bindParam(":Password", $hashedpassword);
@@ -55,11 +55,35 @@ echo("tblfood created<br>");
 $stmt=$conn->prepare("INSERT INTO tblfood 
 (Name,Description,Category,Price)
 VALUES
-('Latte','Hot latte','Drink',2.00)
-('Ham Sandwich','White bread and ham','Sandwich',4.00)
+('Latte','Hot latte','Drink',2.00),
+('Coke','Cold coke','Drink',2.00),
+('Ham Sandwich','White bread and ham','Sandwich',4.00),
 ('Cheese Sandwich','White bread and cheese','Sandwich',4.00)
 ");
 $stmt->execute();
 
+//create order table
+$stmt=$conn->prepare("DROP TABLE IF EXISTS tblorder;
+CREATE TABLE tblorder
+(OrderID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+status VARCHAR(20) NOT NULL,
+UserID INT(4) NOT NULL,
+Orderdate DATETIME
+);
+");
+$stmt->execute();
+echo("order table made")
+
+//create basket table
+$stmt=$conn->prepare("DROP TABLE IF EXISTS tblbasket;
+CREATE TABLE tblbasket
+(OrderID INT(4) NOT NULL,
+Quantity INT(2) DEFAULT 1,
+FoodID INT(4) NOT NULL,
+PRIMARY KEY (OrderID, FoodID)
+);
+");
+$stmt->execute();
+echo("basket table made")
 
 ?>
