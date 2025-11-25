@@ -34,7 +34,7 @@
         while($row=$stmt->fetch(PDO::FETCH_ASSOC))
         {
             //print_r($row);
-            echo($row["Name"]." ".$row["Description"]);
+            echo($row["Name"]." ".$row["Description"]." ".$row["Price"]);
             echo("<br>");
         }
     ?>
