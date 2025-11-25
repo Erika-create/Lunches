@@ -26,6 +26,18 @@ Role TINYINT(1)
 $stmt->execute();
 echo("tblusers created<br>");
 
+//add in test bed of users
+$hashedpassword=password_hash($_POST["password"],PASSWORD_DEFAULT);
+echo($hashedpassword);
+$stmt=$conn->prepare("INSERT INTO tblusers 
+(UserID,Username,Surname,Forename,Password,Year,Balance,Role)
+VALUES
+(NULL,'Rock.Lila','Rock','Lila',:Password,12,3.00,1)
+(NULL,'Oku.Erika','Oku','Erika',:Password,12,320,0)
+");
+$stmt->bindParam(":Password", $hashedpassword);
+$stmt->execute();
+
 //create food table
 $stmt=$conn->prepare("DROP TABLE IF EXISTS tblfood;
 CREATE TABLE tblfood
@@ -38,4 +50,16 @@ Price DECIMAL (15,2) NOT NULL
 ");
 $stmt->execute();
 echo("tblfood created<br>");
+
+//add in test bed of food
+$stmt=$conn->prepare("INSERT INTO tblfood 
+(Name,Description,Category,Price)
+VALUES
+('Latte','Hot latte','Drink',2.00)
+('Ham Sandwich','White bread and ham','Sandwich',4.00)
+('Cheese Sandwich','White bread and cheese','Sandwich',4.00)
+");
+$stmt->execute();
+
+
 ?>
