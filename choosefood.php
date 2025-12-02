@@ -19,6 +19,7 @@
     <?php
         session_start();
         $howmany=count($_SESSION["lunchbasket"]);
+        echo("You have ".$howmany." items in your basket<br>");
         include_once("connection.php");
         foreach ($_SESSION["lunchbasket"] as $item){
             echo($item["foodid"]);
