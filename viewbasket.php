@@ -18,24 +18,24 @@
         $howmany=count($_SESSION["lunchbasket"]);
         echo("You have ".$howmany." items in your basket<br>");
         include_once("connection.php");
+        $total=0;
         foreach ($_SESSION["lunchbasket"] as $item){
-            echo($item["foodid"]);
-           
             $fid=$item["foodid"];
             $stmt=$conn->prepare("SELECT * FROM tblfood WHERE FoodID=:fid");
             $stmt->bindParam(":fid",$fid);
             $stmt->execute();
             while($row=$stmt->fetch(PDO::FETCH_ASSOC))
             {
-                print_r($row["Name"]." - Qty: ".$item["qty"]." total price".($row["Price"]*$item["qty"]));
+                print_r($row["Name"]." - Qty: ".$item["qty"]."total price".($row["Price"]*$item["qty"]));
                 echo("<br>");
                 $total+=($row["Price"]*$item["qty"]);
-            }   
+            }
         }
         echo("Total cost: ".$total);
+        $_SESSION["totalcost"]=$total;
     ?>
     <a href="checkout.php">Proceed to checkout</a>
 <body>
-
+    
 </body>
 </html>
