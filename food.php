@@ -5,16 +5,16 @@
     }else{
         header("location: index.php");
     }
-
+    
 ?>
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>PHP Info</title>
+<head>          
+    <title>Food</title>
 </head>
 
 <body>
-    <form action="addfood.php" method="post">
+    <form action="addfood.php" method="POST">
         Name:<input type="text" name="name"><br>
         Description:<input type="text" name="description"><br>
         Category:
@@ -22,14 +22,16 @@
             <option value="snack">Snack</option>
             <option value="drink">Drink</option>
             <option value="sandwich">Sandwich</option>
-        </select>
-        <br>
-        Price:<input type="text" name="balance"><br>
+            
+          </select>
+          <br>
+        Price :<input type="text" name="price"><br>
+     
         <input type="submit" value="Add Food">
-    </form>   
+    </form>
     <?php
         include_once("connection.php");
-        $stmt=$conn->prepare("SELECT * FROM tblfood");
+        $stmt=$conn->prepare("SELECT * FROM tblfood ORDER BY Category, Name");
         $stmt->execute();
         while($row=$stmt->fetch(PDO::FETCH_ASSOC))
         {
@@ -38,5 +40,6 @@
             echo("<br>");
         }
     ?>
+
 </body>
 </html>

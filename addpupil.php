@@ -1,17 +1,17 @@
 <?php
-header("location:users.php");
-print_r($_POST);
-include_once("connection.php"); //equivalent of import
-
+//header("location: users.php");
+//print_r($_POST);
+include_once("connection.php");//import equivalent!
 if($_POST["role"]=="admin"){
     $role=1;
 #else if not elif
 }else{
     $role=0;
 }
-
-$username=$_POST["surname"].".".$_POST["forename"];
-
+//$role=1;
+$username=$_POST["surname"].".".$_POST["forename"][0];
+//echo($username);
+//$username="bob";
 $hashedpassword=password_hash($_POST["password"],PASSWORD_DEFAULT);
 echo($hashedpassword);
 try{
@@ -33,4 +33,7 @@ catch(PDOException $e)
 {
     echo("error: " . $e->getMessage());
 }
+
+
+
 ?>
