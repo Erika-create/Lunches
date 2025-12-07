@@ -33,7 +33,7 @@ $stmt=$conn->prepare("INSERT INTO tblusers
 (UserID,Username,Surname,Forename,Password,Year,Balance,Role)
 VALUES
 (NULL,'Rock.Lila','Rock','Lila',:Password,12,3.00,1),
-(NULL,'Oku.Erika','Oku','Erika',:Password,12,320,0)
+(NULL,'Oku.Erika','Oku','Erika',:Password,12,320,1)
 ");
 $stmt->bindParam(":Password", $hashedpassword);
 $stmt->execute();
@@ -66,24 +66,23 @@ $stmt->execute();
 $stmt=$conn->prepare("DROP TABLE IF EXISTS tblorder;
 CREATE TABLE tblorder
 (OrderID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-status VARCHAR(20) NOT NULL,
+Status  VARCHAR(20) NOT NULL,
 UserID INT(4) NOT NULL,
 Orderdate DATETIME
 );
 ");
 $stmt->execute();
-echo("order table made")
+echo("order table made");
 
-//create basket table
 $stmt=$conn->prepare("DROP TABLE IF EXISTS tblbasket;
 CREATE TABLE tblbasket
 (OrderID INT(4) NOT NULL,
-Quantity INT(2) DEFAULT 1,
+Quantity  INT(2) DEFAULT 1,
 FoodID INT(4) NOT NULL,
 PRIMARY KEY (OrderID, FoodID)
 );
 ");
 $stmt->execute();
-echo("basket table made")
+echo("basket table made");
 
 ?>

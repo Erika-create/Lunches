@@ -16,9 +16,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    .bg-1 {
+        background-color:rgba(255, 255, 44, 0.35);
+        //color: #ffffff;
+    }
+    </style>
 </head>
 
+
 <body>
+    <div class="container-fluid bg-1 text-center">
     <h1>Main page</h1>
     <a href="users.php">Add user</a><br>
     <a href="food.php">Add food</a><br>
@@ -30,7 +38,6 @@
     <a href="orderhistory.php">View Order History</a><br>
     <div class="container">
     <h2>Basic Table</h2>
-    <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
     <table class="table">
         <thead>
         <tr>
@@ -58,6 +65,7 @@
         </tbody>
     </table>
     </div>
+</div>
 </body>
 </html>
 
