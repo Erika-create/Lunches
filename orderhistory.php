@@ -18,13 +18,20 @@
     <?php
     session_start();
     include_once("connection.php");
-    $stmt=$conn->prepare("SELECT * FROM tblorder WHERE UserID=:userid ORDER BY Orderdate DESC");
-        $stmt->bindParam(":userid",$_SESSION["loggedinuser"]);
-        $stmt->execute();
-        while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+    $stmt=$conn->prepare("SELECT tblorder.UserID as UsrID, tblfood.Name as FN, 
+    tblfood.Price as FP, tblorder.OrderID as OrID, tblbasket.Quantity as BQ 
+    FROM tblorder 
+    JOIN tblbasket ON tblorder.OrderID=tblbasket.OrderID
+    JOIN tblfood ON tblbasket.FoodID=tblfood.FoodID
+    WHERE tblorder.UserID=:userid 
+    ORDER BY Orderdate DESC");
+    $stmt->bindParam(":userid",$_SESSION["loggedinuser"]);
+    $stmt->execute();
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC))
         {
-            print_r($row["Orderdate"]);
+            echo($row["FN"]." - ".$row["FP"]*$row["BQ"]);
             echo("<br>");
+            $temp=$row["OrID"];
         }
 ?>
 </body>

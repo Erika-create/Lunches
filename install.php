@@ -27,13 +27,14 @@ $stmt->execute();
 echo("tblusers created<br>");
 
 //add in test bed of users
-$hashedpassword=password_hash($_POST["password"],PASSWORD_DEFAULT);
+$hashedpassword=password_hash("password",PASSWORD_DEFAULT);
 echo($hashedpassword);
 $stmt=$conn->prepare("INSERT INTO tblusers 
 (UserID,Username,Surname,Forename,Password,Year,Balance,Role)
 VALUES
 (NULL,'Rock.Lila','Rock','Lila',:Password,12,3.00,1),
-(NULL,'Oku.Erika','Oku','Erika',:Password,12,320,1)
+(NULL,'Oku.Erika','Oku','Erika',:Password,12,320,1),
+(NULL,'Smith.Bob','Smith','Bob',:Password,13,420,1)
 ");
 $stmt->bindParam(":Password", $hashedpassword);
 $stmt->execute();
@@ -68,7 +69,7 @@ CREATE TABLE tblorder
 (OrderID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Status  VARCHAR(20) NOT NULL,
 UserID INT(4) NOT NULL,
-Orderdate DATETIME
+OrderDate DATETIME
 );
 ");
 $stmt->execute();

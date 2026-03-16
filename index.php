@@ -19,7 +19,6 @@
     <style>
     .bg-1 {
         background-color:rgba(255, 255, 44, 0.35);
-        //color: #ffffff;
     }
     </style>
 </head>
